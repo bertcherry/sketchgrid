@@ -1,4 +1,4 @@
-//Creates a grid of empty divs with initial value of 16x16 in sketchContainer
+//Create a grid of empty divs with initial value of 16x16 in sketchContainer
 let width = 16;
 function createGrid() {
     const sketchContainer = document.querySelector(".sketch-container");
@@ -15,3 +15,13 @@ function createGrid() {
 }
 
 createGrid();
+
+//Hover effect paints increasing alpha on sketchBox each hover
+const sketchBoxes = document.querySelectorAll(".sketch-box");
+sketchBoxes.forEach((sketchBox) => {
+    sketchBox.addEventListener("mouseover", handleBoxMouseover);
+});
+
+function handleBoxMouseover(e) {
+    e.target.setAttribute("style", "background-color: rgba(0,0,0,1)");
+}
