@@ -1,3 +1,4 @@
+//Creates a grid of empty divs with initial value of 16x16 in sketchContainer
 let width = 16;
 function createGrid() {
     const sketchContainer = document.querySelector(".sketch-container");
