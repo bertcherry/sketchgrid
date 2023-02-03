@@ -38,3 +38,13 @@ function handleBoxMouseover(e) {
     e.target.setAttribute("style", `background-color: rgba(0, 0, 0, ${alpha})`);
     console.log(e.target.style.backgroundColor);
 }
+
+//Clear button clears all sketchBox colors back to 0
+function clearSketch() {
+    sketchBoxes.forEach((sketchBox) => {
+        sketchBox.setAttribute("style", "background-color: rgba(0,0,0,0)");
+    });
+}
+
+const buttonClear = document.querySelector("#clear");
+buttonClear.addEventListener("click", clearSketch);
