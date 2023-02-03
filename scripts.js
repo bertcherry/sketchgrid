@@ -9,6 +9,7 @@ function createGrid() {
         for (n = 0; n < width; n++) {
             const sketchBox = document.createElement("div");
             sketchBox.classList.add("sketch-box");
+            sketchBox.setAttribute("style", "background-color: rgba(0,0,0,0)");
             sketchRow.appendChild(sketchBox);
         }
     }
@@ -23,5 +24,17 @@ sketchBoxes.forEach((sketchBox) => {
 });
 
 function handleBoxMouseover(e) {
-    e.target.setAttribute("style", "background-color: rgba(0,0,0,1)");
+    let boxColor = e.target.style.backgroundColor;
+    //cut alpha channel from RGBA code and increment .1
+    let alpha = boxColor.substr(13);
+    alpha = alpha.slice(0, -1);
+    console.log(alpha);
+    alpha = Number(alpha);
+    //only increment to .9 to avoid looping back to 0
+    if (alpha < .9) {
+        alpha = (alpha + .1);
+        console.log(alpha);
+    }
+    e.target.setAttribute("style", `background-color: rgba(0, 0, 0, ${alpha})`);
+    console.log(e.target.style.backgroundColor);
 }
