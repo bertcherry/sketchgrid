@@ -30,12 +30,14 @@ const buttonClear = document.querySelector("#clear");
 buttonClear.addEventListener("click", clearSketch);
 
 //Grid size button creates a prompt that regenerates grid with new size
+let slider = document.getElementById("grid-size");
+slider.oninput = changeGrid();
 function changeGrid() {
     const sketchRows = document.querySelectorAll(".sketch-row");
     sketchRows.forEach((sketchRow) => {
         sketchContainer.removeChild(sketchRow);
     });  
-    width = prompt("How many boxes of definition? (max 100)", "");
+    width = slider.value;
     createGrid();
 }
 
