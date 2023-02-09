@@ -1,7 +1,8 @@
 //Create a grid of empty divs with initial value of 16x16 in sketchContainer
 let width = 16;
+const sketchContainer = document.querySelector(".sketch-container");
+
 function createGrid() {
-    const sketchContainer = document.querySelector(".sketch-container");
     for (i = 0; i < width; i++) {
         const sketchRow = document.createElement("div");
         sketchRow.classList.add("sketch-row");
@@ -13,15 +14,42 @@ function createGrid() {
             sketchRow.appendChild(sketchBox);
         }
     }
+    //Add event listener to each box to paint on hover
+    hoverEffect();
 }
 
-createGrid();
+//Clear button clears all sketchBox colors back to 0
+function clearSketch() {
+    const sketchBoxes = document.querySelectorAll(".sketch-box");
+    sketchBoxes.forEach((sketchBox) => {
+        sketchBox.setAttribute("style", "background-color: rgba(0,0,0,0)");
+    });
+}
+
+const buttonClear = document.querySelector("#clear");
+buttonClear.addEventListener("click", clearSketch);
+
+//Grid size button creates a prompt that regenerates grid with new size
+function changeGrid() {
+    const sketchRows = document.querySelectorAll(".sketch-row");
+    sketchRows.forEach((sketchRow) => {
+        sketchContainer.removeChild(sketchRow);
+    });  
+    width = prompt("How many boxes of definition? (max 100)", "");
+    createGrid();
+}
+
+const buttonGrid = document.querySelector("#grid-size");
+buttonGrid.addEventListener("click", changeGrid);
+
 
 //Hover effect paints increasing alpha on sketchBox each hover
-const sketchBoxes = document.querySelectorAll(".sketch-box");
-sketchBoxes.forEach((sketchBox) => {
-    sketchBox.addEventListener("mouseover", handleBoxMouseover);
-});
+function hoverEffect() {
+    const sketchBoxes = document.querySelectorAll(".sketch-box");
+    sketchBoxes.forEach((sketchBox) => {
+        sketchBox.addEventListener("mouseover", handleBoxMouseover);
+    });
+}
 
 function handleBoxMouseover(e) {
     let boxColor = e.target.style.backgroundColor;
@@ -39,12 +67,4 @@ function handleBoxMouseover(e) {
     console.log(e.target.style.backgroundColor);
 }
 
-//Clear button clears all sketchBox colors back to 0
-function clearSketch() {
-    sketchBoxes.forEach((sketchBox) => {
-        sketchBox.setAttribute("style", "background-color: rgba(0,0,0,0)");
-    });
-}
-
-const buttonClear = document.querySelector("#clear");
-buttonClear.addEventListener("click", clearSketch);
+createGrid();
