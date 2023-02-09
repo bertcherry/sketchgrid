@@ -29,7 +29,7 @@ function clearSketch() {
 const buttonClear = document.querySelector("#clear");
 buttonClear.addEventListener("click", clearSketch);
 
-//Grid size button creates a prompt that regenerates grid with new size
+//Grid size slider regenerates grid with new size
 let slider = document.getElementById("grid-size");
 slider.oninput = changeGrid();
 function changeGrid() {
