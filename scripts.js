@@ -68,5 +68,3 @@ function handleBoxMouseover(e) {
     e.target.setAttribute("style", `background-color: rgba(0, 0, 0, ${alpha})`);
     console.log(e.target.style.backgroundColor);
 }
-
-createGrid();
